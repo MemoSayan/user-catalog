@@ -1,1 +1,34 @@
-<p>users works!</p>
+<div *ngIf="response" class="card">
+    <div class="card-body">
+        <h5  class="fw-semibold" > Ramdon User API </h5>
+        <p class="card-test"> Seed: {{ response.info.seed }} </p>
+        <p class="card-test"> Results: {{ response.info.results }} </p>
+        <p class="card-test"> version: {{ response.info.version }} </p>
+    </div>
+</div>
+<br>
+<table *ngIf="response" class="table table-striped"> 
+    <thead class="table-light"> 
+        <tr>
+            <th scope="col" >Image</th>
+            <th scope="col" >Name</th>
+            <th scope="col" >Email</th>
+            <th scope="col" >Address</th>
+            <th scope="col" >Phone</th>
+            <th scope="col" >Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of response?.results; let i = index ">
+            <td><img [src]="user.imageUrl" alt="user.firstname"
+                 height="50" width="50" 
+                 style="border-radius: 50%;"></td>
+            <td>{{ user.firstname }} {{ user.lastname }} </td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.address }} </td>
+            <td>{{ user.phone }}</td>
+            <td>
+                <button type="button" [routerLink]="['/user', user.userid]" class="btn btn-outline-primary" >View</button>
+            </td>
+    </tbody>
+</table>

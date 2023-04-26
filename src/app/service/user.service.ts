@@ -22,7 +22,7 @@ export class UserService {
   }
 
   //todo: fecth one user using the user id UUID.
-  getUser(userid: number = 10): Observable<any> {
+  getUser(userid: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/?userid=${userid}`).pipe(
       map((resp: Response) => this.processResponse(resp))
     );
